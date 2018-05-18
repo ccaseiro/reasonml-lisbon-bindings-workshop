@@ -2,7 +2,11 @@ open Jest;
 
 open ExpectJs;
 
-test("basename()", () =>
+test("dirname()", () =>
+  expect(Mypath.dirname("/Users/reason-user")) |> toEqual("/Users")
+);
+
+/*test("basename()", () =>
   expect(Mypath.basename("/foo/bar/baz/asdf/quux.html", ()))
   |> toEqual("quux.html")
 );
@@ -88,4 +92,4 @@ test("resolve()", () =>
 
 test("sep", () =>
   expect(Mypath.sep) |> toEqual("/")
-);
+);*/
