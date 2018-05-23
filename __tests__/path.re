@@ -32,7 +32,7 @@ test("format() ", () =>
   expect(
     Mypath.(
       format(
-        makePathObject(
+        pathObject(
           ~root="/ignored",
           ~dir="/home/user/dir",
           ~base="file.txt",
@@ -48,7 +48,7 @@ test("format() 2 ", () =>
   expect(
     Mypath.(
       format(
-        makePathObject(
+        pathObject(
           ~root="/",
           ~base="file.txt",
           ~ext="ignored",
@@ -73,13 +73,16 @@ test("normalize()", () =>
 );
 
 test("parse()", () =>
-  expect(Mypath.parse("/home/user/dir/file.txt")) |> toEqual({
-    "root": "/",
-    "dir": "/home/user/dir",
-    "base": "file.txt",
-    "ext": ".txt",
-    "name": "file"
-  })
+     expect(Mypath.parse("/home/user/dir/file.txt")) |> toEqual(
+       Mypath.pathObject(
+         ~root="/",
+         ~dir="/home/user/dir",
+         ~base="file.txt",
+         ~ext=".txt",
+         ~name="file",
+         (),
+       )
+  )
 );
 
 test("relative()", () =>
